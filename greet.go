@@ -22,6 +22,19 @@ func Greet(name string) ( string, error ) {
     
 }
 
+func Greets(names []string) (map[string]string, error) {
+    messages := make(map[string]string)
+
+    for _, name := range names {
+        message, err := Greet(name)
+        if err != nil {
+            return nil, err
+        }
+        messages[name] = message
+    }
+    return messages, nil
+}
+
 func greetRandom() string {
     formats := []string {
         "Hola %v",
