@@ -4,7 +4,7 @@ package go_greet // notice the difference this is a so called shared library
 import (
     "fmt"
     "errors"
-
+    "math/rand"
 )
 
 
@@ -17,8 +17,17 @@ func Greet(name string) ( string, error ) {
         return "", errors.New("Greet Error => empty name")
     }
 
-    message := fmt.Sprintf("From %v motherfucker", name)
+    message := fmt.Sprintf(greetRandom(), name)
     return message, nil
     
 }
 
+func greetRandom() string {
+    formats := []string {
+        "Hola %v",
+        "Welcome to goland, %v",
+        "From %v motherfucker",
+    }
+
+    return formats[rand.Intn(len(formats))]
+}
